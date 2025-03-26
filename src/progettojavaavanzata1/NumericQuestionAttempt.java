@@ -10,6 +10,11 @@ package progettojavaavanzata1;
 public class NumericQuestionAttempt {
     private NumericQuestion question;
     private int answer;
+
+    public NumericQuestionAttempt(NumericQuestion question, int answer) {
+        this.question = question;
+        this.answer = answer;
+    }
     
     public boolean isCorrect(){
         return this.answer == this.question.getResult();
@@ -21,4 +26,14 @@ public class NumericQuestionAttempt {
         else
             return "Sbagliato";
     }
+
+    public NumericQuestion getQuestion() {
+        return question;
+    }
+
+    public int getAnswer() {
+        return answer;
+    }
+    
+    
 }
