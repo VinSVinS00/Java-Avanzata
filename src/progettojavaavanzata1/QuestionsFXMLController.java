@@ -72,7 +72,7 @@ public class QuestionsFXMLController implements Initializable {
             }
             
         }else{
-            
+            //anche qua va aggiornata la tabella tentativi ma senza generare una nuova domanda
             alert.setTitle("Alert");
             alert.setHeaderText("Risposta errata");
         }
