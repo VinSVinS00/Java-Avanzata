@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="381.0" prefWidth="522.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="progettojavaavanzata1.FXMLDocumentController">
+    <children>
+        <Button fx:id="btnInvia" layoutX="241.0" layoutY="319.0" onAction="#nextWindow" text="OK" />
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+      <TextField fx:id="txfNome" layoutX="161.0" layoutY="105.0" />
+      <TextField fx:id="txfCog" layoutX="161.0" layoutY="191.0" />
+      <TextField fx:id="txfDom" layoutX="161.0" layoutY="262.0" />
+      <Label layoutX="185.0" layoutY="25.0" text="Inserire le credenziali" />
+      <Label layoutX="234.0" layoutY="66.0" text="Nome" />
+      <Label layoutX="222.0" layoutY="147.0" text="Cognome" />
+      <Label layoutX="222.0" layoutY="228.0" text="Domande" />
+    </children>
+</AnchorPane>

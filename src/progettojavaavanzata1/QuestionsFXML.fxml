@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="430.0" prefWidth="626.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="progettojavaavanzata1.QuestionsFXMLController">
+   <children>
+      <Label fx:id="operando1" layoutX="192.0" layoutY="130.0" text="Label">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="operando2" layoutX="357.0" layoutY="130.0" text="Label">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="operazione" layoutX="275.0" layoutY="130.0" text="Label">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="201.0" layoutY="80.0" text="Risolvi l'operazione">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txfRisposta" layoutX="195.0" layoutY="184.0" prefHeight="31.0" prefWidth="160.0" />
+      <Button fx:id="btnNext" layoutX="359.0" layoutY="184.0" mnemonicParsing="false" onAction="#nextQuestion" text="Next" />
+      <Label fx:id="statusAttuale" layoutX="230.0" layoutY="228.0" text="Label">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="293.0" layoutY="228.0" text="/">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="maxDomande" layoutX="313.0" layoutY="228.0" text="Label">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
