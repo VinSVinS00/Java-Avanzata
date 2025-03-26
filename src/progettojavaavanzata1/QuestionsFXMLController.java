@@ -36,12 +36,14 @@ public class QuestionsFXMLController implements Initializable {
     @FXML
     private Label maxDomande;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        NumericQuestion question = new NumericQuestion();
+        question.randomInit();
+        operando1.setText(question.getNum1() + "");
+        operando2.setText(question.getNum2() + "");
+        operazione.setText(question.getOperator());
+        
     }    
 
     @FXML
