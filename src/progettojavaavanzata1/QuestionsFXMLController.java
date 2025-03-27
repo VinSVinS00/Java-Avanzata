@@ -50,19 +50,14 @@ public class QuestionsFXMLController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        question = new NumericQuestion();
-        question.randomInit();
-        operando1.setText(question.getNum1() + "");
-        operando2.setText(question.getNum2() + "");
-        operazione.setText(question.getOperator());
-        result = question.getResult();
-        
+        datiDomande();
     }    
 
     @FXML
     private void nextQuestion(ActionEvent event) {
         if(Integer.parseInt(txfRisposta.getText()) == result){
             try {
+                datiDomande();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("EsitoFXML.fxml"));
                 Parent root = loader.load();
                 EsitoFXMLController esitoController = loader.getController();
@@ -76,6 +71,15 @@ public class QuestionsFXMLController implements Initializable {
             alert.setTitle("Alert");
             alert.setHeaderText("Risposta errata");
         }
+    }
+    
+    private void datiDomande(){
+        question = new NumericQuestion();
+        question.randomInit();
+        operando1.setText(question.getNum1() + "");
+        operando2.setText(question.getNum2() + "");
+        operazione.setText(question.getOperator());
+        result = question.getResult();
     }
     
 }
