@@ -34,6 +34,4 @@ public class NumericQuestionAttempt {
     public int getAnswer() {
         return answer;
     }
-    
-    
 }

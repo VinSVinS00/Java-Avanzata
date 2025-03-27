@@ -43,6 +43,9 @@ public class EsitoFXMLController implements Initializable {
                            risposta.getAnswer();
         String esito = risposta.getResult();
         risposte.add(new Tentativo(tentativo,esito));
+        table.setItems(risposte);
+        table.refresh();
     }
-    
+
+
 }

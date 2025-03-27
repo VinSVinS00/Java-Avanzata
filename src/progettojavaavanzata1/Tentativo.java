@@ -15,4 +15,14 @@ public class Tentativo {
         this.tentativo = tentativo;
         this.esito = esito;
     }
+
+    public String getTentativo() {
+        return tentativo;
+    }
+
+    public String getEsito() {
+        return esito;
+    }
+    
+    
 }
