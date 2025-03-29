@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="448.0" prefWidth="646.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="progettojavaavanzata1.EsitoFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="448.0" prefWidth="646.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="progettojavaavanzata1.EsitoFXMLController">
    <children>
-      <TableView fx:id="table" layoutX="133.0" layoutY="57.0" prefHeight="322.0" prefWidth="430.0">
+      <TableView fx:id="table" layoutX="108.0" layoutY="49.0" prefHeight="322.0" prefWidth="430.0">
         <columns>
           <TableColumn fx:id="colonnaTentativo" prefWidth="278.0" text="Tentativo" />
           <TableColumn fx:id="colonnaEsito" prefWidth="151.0" text="Esito" />
         </columns>
       </TableView>
+      <Label layoutX="233.0" layoutY="6.0" text="Lista dei tentativi">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="288.0" layoutY="385.0" mnemonicParsing="false" onAction="#esporta" text="Esporta" />
    </children>
 </AnchorPane>

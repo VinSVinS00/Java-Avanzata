@@ -46,8 +46,10 @@ public class QuestionsFXMLController implements Initializable {
     private Label maxDomande;
     
     NumericQuestion question;
+    FXMLDocumentController dati;
     
     private static int result;
+    private int domandaCorrente = 1;
     
     Alert alert = new Alert(Alert.AlertType.ERROR);
 
@@ -68,32 +70,42 @@ public class QuestionsFXMLController implements Initializable {
             e.printStackTrace();
         }
     }    
+    
+    private int numDomande;
+    public void setNumeroDomande(int num){
+        this.numDomande = num;
+    }
 
     @FXML
-    private void nextQuestion(ActionEvent event) {
-        if(i<1){
+    private void nextQuestion(ActionEvent event) throws IOException {
+        System.out.println("Il Numero di domande è: " + numDomande);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EsitoFXML.fxml"));
+        Parent root = loader.load();
+        EsitoFXMLController esitoController = loader.getController();
+        esitoController.addAnswer(new NumericQuestionAttempt(question,Integer.parseInt(txfRisposta.getText())));
         if(Integer.parseInt(txfRisposta.getText()) == result){
-            esitoController.addAnswer(new NumericQuestionAttempt(question, Integer.parseInt(txfRisposta.getText())));
-            datiDomande();
-        }else{
-            //anche qua va aggiornata la tabella tentativi ma senza generare una nuova domanda
-            alert.setTitle("Alert");
-            alert.setHeaderText("Risposta errata");
-            alert.showAndWait();
-        }
-        i++;
-        }else{
-        
-        try{
-            Parent root2 = FXMLLoader.load(getClass().getResource("EsitoFXML.fxml"));
-            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root2);
-            stage.setScene(scene);
-            stage.show();
-        }catch(IOException ex){
-                
-        }
-        }
+            System.out.println("domanda: " + domandaCorrente + " su: " + numDomande);
+            domandaCorrente++;
+            if(domandaCorrente <= numDomande){
+                datiDomande();
+            } else {
+                try{
+                    Parent esitoRoot = FXMLLoader.load(getClass().getResource("EsitoFXML.fxml"));
+                    Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                } catch(IOException ex){
+                        
+                }
+            }
+
+            }else{
+                alert.setTitle("Alert");
+                alert.setHeaderText("Risposta errata");
+                alert.showAndWait();
+                return;
+            }
     }
 
     

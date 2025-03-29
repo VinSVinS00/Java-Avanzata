@@ -57,7 +57,12 @@ public class FXMLDocumentController implements Initializable {
             return;
         }else{
             try{
-            Parent root = FXMLLoader.load(getClass().getResource("QuestionsFXML.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("QuestionsFXML.fxml"));
+            Parent root = loader.load();
+            
+            QuestionsFXMLController controller = loader.getController();
+            controller.setNumeroDomande(Integer.parseInt(txfDom.getText()));
+            
             Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -70,7 +75,5 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
     }    
-    
 }
