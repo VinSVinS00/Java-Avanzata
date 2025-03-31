@@ -1,2 +1,5 @@
-15 + 13 = 1 -> Sbagliato
-15 + 13 = 28 -> Corretto
+41 + 4 = 45 -> Corretto
+44 + 33 = -1000 -> Timer Scaduto
+44 + 33 = -1000 -> Timer Scaduto
+44 + 33 = -1000 -> Timer Scaduto
+44 + 33 = -1000 -> Timer Scaduto

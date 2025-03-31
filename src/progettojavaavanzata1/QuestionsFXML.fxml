@@ -7,44 +7,48 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="430.0" prefWidth="626.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="progettojavaavanzata1.QuestionsFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="430.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="progettojavaavanzata1.QuestionsFXMLController">
    <children>
-      <Label fx:id="operando1" layoutX="192.0" layoutY="130.0" text="Label">
+      <Label fx:id="operando1" layoutX="280.0" layoutY="129.0" text="1">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="operando2" layoutX="357.0" layoutY="130.0" text="Label">
+      <Label fx:id="operando2" layoutX="328.0" layoutY="129.0" text="2">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="operazione" layoutX="275.0" layoutY="130.0" text="Label">
+      <Label fx:id="operazione" layoutX="311.0" layoutY="129.0" text="+">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="201.0" layoutY="80.0" text="Risolvi l'operazione">
+      <Label layoutX="217.0" layoutY="80.0" text="Risolvi l'operazione">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="txfRisposta" layoutX="195.0" layoutY="184.0" prefHeight="31.0" prefWidth="160.0" />
-      <Button fx:id="btnNext" layoutX="359.0" layoutY="184.0" mnemonicParsing="false" onAction="#nextQuestion" text="Next" />
-      <Label fx:id="statusAttuale" layoutX="230.0" layoutY="228.0" text="Label">
+      <TextField fx:id="txfRisposta" layoutX="222.0" layoutY="184.0" prefHeight="31.0" prefWidth="160.0" />
+      <Button fx:id="btnNext" layoutX="386.0" layoutY="184.0" mnemonicParsing="false" onAction="#nextQuestion" prefHeight="31.0" prefWidth="56.0" text="Next" />
+      <Label fx:id="statusAttuale" layoutX="268.0" layoutY="228.0" prefHeight="29.0" prefWidth="25.0" text="Label">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="293.0" layoutY="228.0" text="/">
+      <Label layoutX="296.0" layoutY="228.0" text="/">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="maxDomande" layoutX="313.0" layoutY="228.0" text="Label">
+      <Label fx:id="maxDomande" layoutX="316.0" layoutY="228.0" text="Label">
          <font>
             <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="timerLabel" layoutX="201.0" layoutY="282.0" prefHeight="38.0" prefWidth="251.0" text="Timer" textAlignment="CENTER">
+         <font>
+            <Font size="27.0" />
          </font>
       </Label>
    </children>
