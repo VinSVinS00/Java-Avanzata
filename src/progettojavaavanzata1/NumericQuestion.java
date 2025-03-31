@@ -18,7 +18,8 @@ public class NumericQuestion {
     public void randomInit(){
         this.num1 = rand.nextInt(49) + 1;
         this.num2 = rand.nextInt(49) + 1;
-        if(rand.nextInt(1) == 0)
+        int randOp = rand.nextInt(2);
+        if(randOp == 0)
             operator = "+";
         else
             operator = "-";

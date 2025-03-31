@@ -1,5 +1,2 @@
-41 + 4 = 45 -> Corretto
-44 + 33 = -1000 -> Timer Scaduto
-44 + 33 = -1000 -> Timer Scaduto
-44 + 33 = -1000 -> Timer Scaduto
-44 + 33 = -1000 -> Timer Scaduto
+28 + 34 = -1000 -> Sbagliato
+40 + 1 = 41 -> Corretto

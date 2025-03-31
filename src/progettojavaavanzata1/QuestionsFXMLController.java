@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package progettojavaavanzata1;
 
 import java.io.IOException;
@@ -24,12 +19,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-
-/**
- * FXML Controller class
- *
- * @author vitol
- */
 public class QuestionsFXMLController implements Initializable {
 
     @FXML
@@ -49,125 +38,123 @@ public class QuestionsFXMLController implements Initializable {
     @FXML
     private Label timerLabel;
     
-    NumericQuestion question;
-    FXMLDocumentController dati;
+    private NumericQuestion question;
     
-    private static int result;
     private int domandaCorrente = 1;
+    
     private int numDomande;
     
-    Alert alert = new Alert(Alert.AlertType.ERROR);
-
-    int i;
+    private Alert alert = new Alert(Alert.AlertType.ERROR);
     
-    EsitoFXMLController esitoController;
-    Parent root;
+    private EsitoFXMLController esitoController;
     
-    int tempo;
+    private int tempo;
+    
     private Timeline timeline;
-    public void startTimer() {
-        tempo = 6;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EsitoFXML.fxml"));
+        try {
+            Parent root = loader.load();
+            esitoController = loader.getController();
+        } catch (IOException e) {
+            
+        }
+        datiDomande();
+        statusAttuale.setText(domandaCorrente + "");
+        startTimer();
+    }    
+
+    public void setNumeroDomande(int num) {
+        this.numDomande = num;
+        maxDomande.setText(numDomande + "");
+    }
+    
+    private void startTimer() {
+        tempo = 30;
         timerLabel.setText("Tempo rimasto: " + tempo + "s");
 
         timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-            tempo--; 
-            timerLabel.setText("Tempo rimasto: " + tempo + "s"); 
+            tempo--;
+            timerLabel.setText("Tempo rimasto: " + tempo + "s");
 
             if (tempo <= 0) {
                 timeline.stop();
                 timerLabel.setText("Tempo scaduto!");
                 esitoController.addAnswer(new NumericQuestionAttempt(question, -1000));
-                if (domandaCorrente < numDomande)
-                    nextQuestionTimerScaduto();
+                nextQuestionTimerScaduto();
             }
         }));
 
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
     }
-    
-    public void setNumeroDomande(int num){
-        this.numDomande = num;
-        maxDomande.setText(String.valueOf(numDomande));
-    }
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        datiDomande();
-        statusAttuale.setText(String.valueOf(domandaCorrente));
-        i=0;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("EsitoFXML.fxml"));
-        try {
-            Parent root = loader.load();
-            esitoController = loader.getController();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        startTimer();
-    }    
-    
-    @FXML
-    private void nextQuestion(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("EsitoFXML.fxml"));
-        Parent root = loader.load();
-        EsitoFXMLController esitoController = loader.getController();
-        esitoController.addAnswer(new NumericQuestionAttempt(question,Integer.parseInt(txfRisposta.getText())));
-        if(Integer.parseInt(txfRisposta.getText()) == result){
-            domandaCorrente++;
-            if(domandaCorrente <= numDomande){
-                datiDomande();
-                statusAttuale.setText(String.valueOf(domandaCorrente));
-                timeline.stop();
-                startTimer();
-            } else {
-                try{
-                    timeline.stop();
-                    Parent esitoRoot = FXMLLoader.load(getClass().getResource("EsitoFXML.fxml"));
-                    Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
-                } catch(IOException ex){
-                        
-                }
-            }
 
-        }else{
-            alert.setTitle("Alert");
-            alert.setHeaderText("Risposta errata");
+    @FXML
+    private void nextQuestion(ActionEvent event) {
+        try {
+            int rispostaUtente = Integer.parseInt(txfRisposta.getText());
+            esitoController.addAnswer(new NumericQuestionAttempt(question, rispostaUtente));
+
+            if (rispostaUtente == question.getResult()) {
+                domandaCorrente++;
+                if (domandaCorrente <= numDomande) {
+                    timeline.stop();
+                    datiDomande();
+                    statusAttuale.setText(domandaCorrente + "");
+                    startTimer();
+                } else {
+                    cambiaScena(event);
+                }
+            } else {
+                alert.setTitle("Alert");
+                alert.setHeaderText("Risposta errata, riprova");
+                alert.showAndWait();
+            }
+        } catch (NumberFormatException e) {
+            alert.setTitle("Errore di input");
+            alert.setHeaderText("Inserisci un numero valido");
             alert.showAndWait();
-            return;
         }
     }
-    
+
     private void nextQuestionTimerScaduto() {
-    domandaCorrente++;
-    if (domandaCorrente <= numDomande) {
-        timeline.stop();
-        datiDomande();
-        statusAttuale.setText(String.valueOf(domandaCorrente));
-        startTimer();
-    } else {
+        domandaCorrente++;
+        if (domandaCorrente <= numDomande) {
+            timeline.stop();
+            datiDomande();
+            statusAttuale.setText(domandaCorrente + "");
+            startTimer();
+        } else {
+            cambiaScena(null);
+        }
+    }
+
+    private void cambiaScena(ActionEvent event) {
         try {
-            Parent esitoRoot = FXMLLoader.load(getClass().getResource("EsitoFXML.fxml"));
-            Stage stage = (Stage) btnNext.getScene().getWindow();
+            timeline.stop();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("EsitoFXML.fxml"));
+            Parent esitoRoot = loader.load();
+            Stage stage;
+            if (event != null) {
+                stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+            } else {
+                stage = (Stage)btnNext.getScene().getWindow();
+            }
             Scene scene = new Scene(esitoRoot);
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
-            ex.printStackTrace();
+            
         }
     }
-}
 
-    
-    private void datiDomande(){
+    private void datiDomande() {
         question = new NumericQuestion();
         question.randomInit();
         operando1.setText(question.getNum1() + "");
         operando2.setText(question.getNum2() + "");
         operazione.setText(question.getOperator());
-        result = question.getResult();
     }
-    
 }
