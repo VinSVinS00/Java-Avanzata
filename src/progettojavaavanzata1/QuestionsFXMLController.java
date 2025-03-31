@@ -117,9 +117,11 @@ public class QuestionsFXMLController implements Initializable {
             if(domandaCorrente <= numDomande){
                 datiDomande();
                 statusAttuale.setText(String.valueOf(domandaCorrente));
+                timeline.stop();
                 startTimer();
             } else {
                 try{
+                    timeline.stop();
                     Parent esitoRoot = FXMLLoader.load(getClass().getResource("EsitoFXML.fxml"));
                     Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
                     Scene scene = new Scene(root);
@@ -141,6 +143,7 @@ public class QuestionsFXMLController implements Initializable {
     private void nextQuestionTimerScaduto() {
     domandaCorrente++;
     if (domandaCorrente <= numDomande) {
+        timeline.stop();
         datiDomande();
         statusAttuale.setText(String.valueOf(domandaCorrente));
         startTimer();
